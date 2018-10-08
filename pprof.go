@@ -67,35 +67,35 @@ import (
 
 func init() {
 	http.HandleFunc("/debug/pprof/", func(w http.ResponseWriter, req *http.Request) {
-		if !iptable.IsTrustedIP(iptable.GetRemoteAddrIP(req.RemoteAddr), false) {
+		if !iptable.IsTrustedIP1(iptable.RequestIP(req)) {
 			http.Error(w, "not allowed", http.StatusUnauthorized)
 			return
 		}
 		Index(w, req)
 	})
 	http.HandleFunc("/debug/pprof/cmdline", func(w http.ResponseWriter, req *http.Request) {
-		if !iptable.IsTrustedIP(iptable.GetRemoteAddrIP(req.RemoteAddr), false) {
+		if !iptable.IsTrustedIP1(iptable.RequestIP(req)) {
 			http.Error(w, "not allowed", http.StatusUnauthorized)
 			return
 		}
 		Cmdline(w, req)
 	})
 	http.HandleFunc("/debug/pprof/profile", func(w http.ResponseWriter, req *http.Request) {
-		if !iptable.IsTrustedIP(iptable.GetRemoteAddrIP(req.RemoteAddr), false) {
+		if !iptable.IsTrustedIP1(iptable.RequestIP(req)) {
 			http.Error(w, "not allowed", http.StatusUnauthorized)
 			return
 		}
 		Profile(w, req)
 	})
 	http.HandleFunc("/debug/pprof/symbol", func(w http.ResponseWriter, req *http.Request) {
-		if !iptable.IsTrustedIP(iptable.GetRemoteAddrIP(req.RemoteAddr), false) {
+		if !iptable.IsTrustedIP1(iptable.RequestIP(req)) {
 			http.Error(w, "not allowed", http.StatusUnauthorized)
 			return
 		}
 		Symbol(w, req)
 	})
 	http.HandleFunc("/debug/pprof/trace", func(w http.ResponseWriter, req *http.Request) {
-		if !iptable.IsTrustedIP(iptable.GetRemoteAddrIP(req.RemoteAddr), false) {
+		if !iptable.IsTrustedIP1(iptable.RequestIP(req)) {
 			http.Error(w, "not allowed", http.StatusUnauthorized)
 			return
 		}
